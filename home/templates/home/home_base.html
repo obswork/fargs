@@ -1,0 +1,41 @@
+{% load staticfiles i18n static wagtailuserbar wagtailcore_tags %}
+
+<!DOCTYPE HTML>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <title>{% block title %}ZevCarpets{% endblock title %}</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="description" content="Zevenbergen Carpet Cleaners - The Pacific Northwest's Favorie Cleaners">
+      <link rel="icon" type="image/png" sizes="16x16" href="{% static 'home/favicon.ico' %}">
+
+      <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+      <!--[if lt IE 9]>
+              <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+
+      <!--[if lte IE 8]><script src="{% static 'home/js/ie/html5shiv.js' %}"></script><![endif]-->
+
+      <link href="{% static 'home/css/main.css' %}" rel="stylesheet" />
+      <link href="{% static 'home/css/zv.css' %}" rel="stylesheet" />
+
+      {% block extra_css %}{% endblock %}
+
+    </head>
+
+    <body>
+      {% wagtailuserbar %} 
+
+      {% block body %}{% endblock %}
+
+      <!-- Scripts -->
+      <script src="{% static 'home/js/jquery.min.js' %}"></script>
+      <script src="{% static 'home/js/jquery.scrolly.min.js' %}"></script>
+      <script src="{% static 'home/js/skel.min.js' %}"></script>
+      <script src="{% static 'home/js/util.js' %}"></script>
+      <!--[if lte IE 8]><script src="{% static 'home/js/ie/respond.min.js' %}"></script><![endif]-->
+      <script src="{% static 'home/js/main.js' %}"></script>
+      <script src="{% static 'home/js/zv.js' %}"></script>
+    </body>
+</html>

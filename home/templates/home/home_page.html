@@ -1,0 +1,216 @@
+{% extends "home/home_base.html" %} 
+{% load staticfiles static wagtailimages_tags wagtailcore_tags %}
+
+{% block extra_css %}
+
+<style type="text/css" media="screen">
+
+
+.main.style2 {
+    background-color: #333;
+    color: rgba(255, 255, 255, 0.75);
+    background-attachment: fixed, fixed;
+    {% image page.parralax_image original as parralax_img %}
+    background-image: 
+        url("{% static 'home/css/images/overlay1.png' %}"), 
+        url("{% static 'home/css/images/overlay1.png' %}"),
+        url("{{ parralax_img.url }}");
+    background-size: cover;
+}
+
+#header:after {
+    -moz-transition: opacity 1s ease;
+    -webkit-transition: opacity 1s ease;
+    -ms-transition: opacity 1s ease;
+    transition: opacity 1s ease;
+    {% image page.header_background_image original as header_background %}
+    background-image: url("{{ header_background.url }}");
+    content: '';
+    height: 100%;
+    left: 0;
+    opacity: .7;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+</style>
+
+{% endblock %}
+
+{% block body %}
+
+<!-- Header -->
+<section id="header">
+  <div class="inner">
+      {% image page.logo_image original as logo_image %}
+      <img src="{{ logo_image.url }}" alt=""/>
+      {{ page.header_text|richtext }}
+    <ul class="actions">
+        <li><a href="#one" class="button scrolly">{{ page.header_button }}</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- One -->
+<section id="one" class="main style1">
+  <div class="container">
+    <div class="row 150%">
+      <div class="6u 12u$(medium)">
+          {{ page.s1_text | richtext}}
+      </div>
+      <div class="6u$ 12u$(medium) important(medium)">
+        <span class="image fit">
+            {% image page.s1_image original as s1_image %}
+            <img src="{{ s1_image.url }}" alt=""/>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Two -->
+<section id="two" class="main style2">
+  <div class="container">
+    <div class="row 150%">
+      <div class="6u 12u$(medium)">
+        <ul class="major-icons">
+            {% for icon in page.icons.all %}
+                <li><span class="icon style{{ icon.style }} major {{ icon.name }}"></span></li>
+            {% endfor %}
+        </ul>
+      </div>
+      <div class="6u$ 12u$(medium) reasons">
+          {{ page.s2_text | richtext }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Three -->
+<section id="three" class="main style1 special">
+  <div class="container">
+      {{ page.s3_text | richtext}}
+    <div class="row 150%">
+        <div class="6u 12u$(medium)">
+          <div class="small-12 large-4 medium-6 columns">
+            <ul class="pricing-table active-tb shadow mrgn-20-top">
+              <li class="title">{{ page.service1 }}</li>
+              <li class="bullet-item">
+                <input type="number" id="rooms" class="estimator-input" min="0" value=0>
+                <p>rooms</p>
+              </li>
+              <li class="bullet-item">
+                <input type="number" id="couches" class="estimator-input" min="0" value=0>
+                <p>couches</p>
+              </li>
+              <li class="bullet-item">
+                <input type="number" id="loveseats" class="estimator-input" min="0" value=0>
+                <p>loveseats</p>
+              </li>
+              <li class="bullet-item">
+                <a class="button special" href="#message">Total: $<span id="one-time-total">0</span></a>
+                <a class="button" href="https://www.genbook.com/bookings/slot/reservation/30324883?bookingSourceId=1000">Book now!</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="6u 12u$(medium)">
+          <div class="small-12 large-4 medium-6 columns">
+            <ul class="pricing-table active-tb shadow mrgn-20-top">
+              <li class="title">{{ page.service2 }}</li>
+              <li class="bullet-item">3 rooms</li>
+              <li class="bullet-item">2 couches</li>
+              <li class="bullet-item">1 loveseat</li>
+              <li class="bullet-item">
+                  <a class="button special" href="#message">Total: ${{ page.service2_price }}</a>
+                <a class="button" href="https://www.genbook.com/bookings/slot/reservation/30324883?bookingSourceId=1000">Book now!</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- Four -->
+<section id="four" class="main style2 special">
+  <div class="container">
+      {{ page.s4_text | richtext }}
+    <ul class="actions uniform">
+      <li><a href="https://www.genbook.com/bookings/slot/reservation/30324883?bookingSourceId=1000" class="button special">Book</a>
+      </li>
+      <li><a href="#five" class="scrolly button">Message</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- Five  -->
+<section id="five" class="main style1">
+    <div class="container">
+        <section>
+            <h1><strong>Message</strong></h1>
+            {% if messages %}
+                {% for message in message %}
+                    {% if message.level_tag == 'success' %}
+                        <h4 class="{{ message.tags }}" style="color: #2199e8">
+                            {{ message }}
+                        </h4>
+                    {% else %}
+                        <h4 class="{{ message.tags }}" style="color: red">
+                            {{ message }}
+                        </h4>
+                        {% endif %} 
+                {% endfor %}
+            {% endif %}
+                
+            <form method="post" action="/">
+            {% csrf_token %}
+                <div class="row uniform 50%">
+                    <div class="6u 12u$(xsmall)">
+                        {{ form.sender.errors }}
+                        {{ form.sender }} 
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        {{ form.email.errors }}
+                        {{ form.email }}
+                    </div>
+                    <div class="6u$ 12u$(xsmall)">
+                        {{ form.number.errors }}
+                        {{ form.number }}
+                    </div>
+                    {% for radio in form.category %}
+                    <div class="4u 12u$(small)">
+                             {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}">{{ radio.choice_label }}</label>
+                        </div>
+                    {% endfor %}
+                    <div class="12u$">
+                            {{ form.message }}
+                    </div>
+                    <div class="12u$">
+                        <ul class="actions">
+                            <li><input type="submit" value="Send Message" class="special" /></li>
+                            <li><input type="reset" value="Reset" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </section>
+    </div>
+</section>
+
+<!-- Footer -->
+<section id="footer">
+  <!--
+    <ul class="copyright">
+        <li>&copy; Untitled</li><li></li>
+    </ul>
+    -->
+</section>
+
+{% endblock %}
+
+</html>

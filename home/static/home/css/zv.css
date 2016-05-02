@@ -1,0 +1,98 @@
+/* Pricing Tables */
+.pricing-table {
+  border: solid 1px #DDDDDD;
+  margin-left: 0;
+  margin-bottom: 1.25rem;
+  padding-left: 0;
+  }
+  .pricing-table * {
+    list-style: none;
+    line-height: 1; }
+  .pricing-table .title {
+    background-color: #4686a0;
+    color: rgba(255, 255, 255, 0.75);
+    background-attachment: fixed,							fixed,							fixed;
+    background-image: url("images/overlay2.png"), url("images/overlay4.svg"), linear-gradient(45deg, #4361c2, #4fa49a 50%, #9dc66b 95%);
+    font-size: 2rem;
+    font-weight: normal;
+    padding: 0.9375rem 1.25rem;
+    text-align: center; }
+  .pricing-table .price {
+    background-color: #F6F6F6;
+    color: #333333;
+    font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: normal;
+    padding: 0.9375rem 1.25rem;
+    text-align: center; }
+  .pricing-table .description {
+    background-color: #FFFFFF;
+    border-bottom: dotted 1px #DDDDDD;
+    color: #777777;
+    font-size: 0.75rem;
+    font-weight: normal;
+    line-height: 1.4;
+    padding: 0.9375rem;
+    text-align: center; }
+  .pricing-table .bullet-item {
+    background-color: #FFFFFF;
+    border-bottom: dotted 1px #DDDDDD;
+    color: #333333;
+    font-size: 0.875rem;
+    font-weight: normal;
+    padding: 0.9375rem;
+    text-align: center; }
+  .pricing-table .cta-button {
+    background-color: #FFFFFF;
+    padding: 1.25rem 1.25rem 0;
+    text-align: center; }
+
+
+.estimator-input { 
+    width: 50px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 0;
+}
+
+.recurring-estimator-input { 
+    width: 50px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 0;
+}
+
+.bullet-item .button{
+    line-height: 3;
+    padding: 0 25px 0 25px;
+}
+
+.bullet-item p{
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.bullet-item #rooms{
+    margin-left: -18px;
+}
+.bullet-item #couches{
+    margin-left: -8px;
+}
+
+.bullet-item #weeks{
+    margin-left: -13px;
+}
+.bullet-item #months{
+    margin-left: -5px;
+}
+
+.center{
+    width: 100%;
+}
+
+
+@media screen and (max-width: 736px) {
+    #header img{
+        width: 100%;
+    }
+}
