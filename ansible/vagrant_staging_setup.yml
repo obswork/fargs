@@ -1,30 +1,20 @@
 - hosts: all
   become: yes
   remote_user: vagrant
-  
+
   tasks:
+    - name: and now we test the connection
+      ping:
+
     - pause: prompt="Ensure that you've added your public keys to the keystore_folder
-                    [Enter] to continue once you've added public keys" 
+                    [Enter] to continue once you've added public keys"
       tags:
           - vagrant
-
-    - name: Creates destination directory
-      file: state=directory mode=0700 dest=/root/.ssh/
-      tags:
-          - vagrant
-      
-    - name: Pushes user's rsa key to root's vagrant box (it's ok if this TASK fails)
-      copy: src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
-      register: rsa
-      ignore_errors: yes
-      tags:
-          - vagrant
-
-    - name: Pushes user's dsa key to root's vagrant box (it's NOT ok if both TASKs fail)
-      copy: src=~/.ssh/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
-      when: rsa|failed
-      tags:
-          - vagrant
+    
+    - name: install ssh key
+      authorized_key: user=vagrant
+                      key="{{ lookup('file', '/users/home/.ssh/id_rsa.pub') }}"
+                      state=present
 
     - name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
       command: host -t A ansible.cc
@@ -46,7 +36,7 @@
 
     - name: Add the deploy user
       user: name={{ deploy_user }} shell=/bin/bash groups=sudo append=yes
-      sudo: yes
+      become: yes
       tags:
         - vagrant
         - user
@@ -54,7 +44,7 @@
 
     - name: Ensure that sudo does not require a password
       lineinfile: "dest=/etc/sudoers state=present regexp='^%sudo' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
-      sudo: yes
+      become: yes
       tags:
         - vagrant
         - user
@@ -64,20 +54,20 @@
             owner={{ deploy_user }}
             group={{ deploy_user }}
             state=directory
-      sudo: yes
+      become: yes
       tags:
         - vagrant
         - user
 
     - name: Copy the authorized file to the .ssh dir
       copy: src={{ keystore_path }}/authorized_keys
-            dest=/home/{{ deploy_user }}/.ssh/authorized_keys 
+            dest=/home/{{ deploy_user }}/.ssh/authorized_keys
             owner={{ deploy_user }}
             group={{ deploy_user }}
-      sudo: yes
+      become: yes
       tags:
         - vagrant
-        - sshkeys 
+        - sshkeys
 
     - name: Create the ssh key pair for the deploy user
       user: name={{ deploy_user }} generate_ssh_key=yes ssh_key_bits=2048 ssh_key_file=.ssh/id_rsa
@@ -92,8 +82,8 @@
         - user
         - sshkeys
 
-    - name: Prompt to upload deployment keys 
-      pause: prompt="Deployment key has been downloaded add it to your VCS  
-                    Please press [Enter] after you've added keys" 
+    - name: Prompt to upload deployment keys
+      pause: prompt="Deployment key has been downloaded add it to your VCS
+                    Please press [Enter] after you've added keys"
       tags:
-         - user 
+         - user

@@ -6,6 +6,7 @@
 
 - name: Ensure ufw is at the latest version
   apt: pkg=ufw state=latest
+  become: yes
   tags: 
     - ufw
 

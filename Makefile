@@ -123,7 +123,7 @@ ifeq ($(DEPLOY_ENV), vagrant)
 	(\
 		cd ansible; \
 		vagrant up; \
-		$(PLAYBOOK) -vvvv -c paramiko -i staging vagrant_staging_setup.yml ; \
+		$(PLAYBOOK) -vvvv -i staging vagrant_staging_setup.yml --ask-pass; \
 	)
 else
 	$(call ECHO_BLUE, Create the deploy user for based $(DEPLOY_ENV) )
@@ -137,7 +137,7 @@ provision:
 	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
 	(\
 		cd ansible; \
-		$(PLAYBOOK) -i $(DEPLOY_ENV) provision.yml --skip-tags user; \
+		$(PLAYBOOK) -vvvv -i $(DEPLOY_ENV) provision.yml --skip-tags "user"; \
 	)
 
 deploy:

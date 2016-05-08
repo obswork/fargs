@@ -1,6 +1,7 @@
 ---
 - name: Authorized hosts for bitbucket
   shell: ssh-keyscan -H bitbucket.org >> /home/{{ deploy_user }}/.ssh/known_hosts
+  when: vcs == 'hg'
   args:
       creates: /home/{{ deploy_user }}/.ssh/known_hosts
   sudo: no
