@@ -16,7 +16,6 @@
 - name: configure and deploy django infrastructure and application code 
   hosts: all 
   remote_user: vagrant
-  become: yes
   roles:
       - role: web
   tags:

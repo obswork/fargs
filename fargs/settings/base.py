@@ -8,7 +8,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.8/ref/settings/
 """
 import os
-from os.path import abspath, dirname, join, normpath
+from os.path import abspath, dirname, join
 from sys import path
 
 from django.core.exceptions import ImproperlyConfigured

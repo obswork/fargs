@@ -1,4 +1,4 @@
-{% load staticfiles i18n static wagtailuserbar wagtailcore_tags %}
+{% load compress staticfiles i18n static wagtailuserbar wagtailcore_tags %}
 
 <!DOCTYPE HTML>
 <html>
@@ -17,8 +17,10 @@
 
       <!--[if lte IE 8]><script src="{% static 'home/js/ie/html5shiv.js' %}"></script><![endif]-->
 
+      {% compress css %}
       <link href="{% static 'home/css/main.css' %}" rel="stylesheet" />
       <link href="{% static 'home/css/zv.css' %}" rel="stylesheet" />
+      {% endcompress %}
 
       {% block extra_css %}{% endblock %}
 
@@ -29,6 +31,7 @@
 
       {% block body %}{% endblock %}
 
+      {% compress js %}
       <!-- Scripts -->
       <script src="{% static 'home/js/jquery.min.js' %}"></script>
       <script src="{% static 'home/js/jquery.scrolly.min.js' %}"></script>
@@ -37,5 +40,6 @@
       <!--[if lte IE 8]><script src="{% static 'home/js/ie/respond.min.js' %}"></script><![endif]-->
       <script src="{% static 'home/js/main.js' %}"></script>
       <script src="{% static 'home/js/zv.js' %}"></script>
+      {% endcompress %}
     </body>
 </html>

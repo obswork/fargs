@@ -1,5 +1,4 @@
 from .base import *
-import os
 
 DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
@@ -33,7 +32,7 @@ INSTALLED_APPS += (
     'gunicorn',
 )
 
-#support opbeat
+# support opbeat
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -76,7 +75,7 @@ CACHES = {
     }
 }
 
-DEFAULT_FROM_EMAIL =  get_env_variable('EMAIL_FROM')
+DEFAULT_FROM_EMAIL = get_env_variable('EMAIL_FROM')
 EMAIL_USE_TLS = True
 EMAIL_HOST = get_env_variable('EMAIL_HOST')
 EMAIL_HOST_USER = get_env_variable('EMAIL_USER')

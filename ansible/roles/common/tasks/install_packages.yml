@@ -17,12 +17,13 @@
     - python-setuptools
     - libjpeg-dev
     - libtiff-dev 
+    - libffi-dev
     - zlib1g-dev 
     - libfreetype6-dev 
     - liblcms2-dev
     - python-opencv
     - python-numpy
-      #     - openjdk-7-jre-headless
+    - openjdk-7-jre-headless
     - python-pip
     - bash
     - openssl
