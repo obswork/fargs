@@ -19,8 +19,9 @@
 
 
 - name: Create the Sites Directory if not present 
-  file: path={{ sites_dir }}/{{ project_name }} owner={{ deploy_user }} state=directory
+  file: path={{ sites_dir }}/{{ project_name }} owner={{ deploy_user }} group={{ deploy_user }} state=directory
   become: yes
+  become_user: "{{ deploy_user }}"
   tags:
       - web 
       - hg
