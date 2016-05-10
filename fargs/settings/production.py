@@ -1,6 +1,6 @@
 from .base import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SECRET_KEY = get_env_variable("SECRET_KEY")

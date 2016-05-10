@@ -48,14 +48,12 @@
   shell: hg pull
       && hg update
   when: vcs == 'hg'
-  become: no
   args:
       chdir: "{{ sites_dir }}/{{ project_name }}"
   tags:
       - venv 
 
 - name: Pull/And update the source git 
-  become: no
   shell: git pull
   when: vcs == 'git'
   become: yes

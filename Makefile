@@ -36,7 +36,7 @@ ECHO_BLUE = @echo "\033[33;34m $1\033[0m"
 ECHO_RED = @echo "\033[33;31m $1\033[0m"
 
 # The default server host local development
-HOST ?= localhost:8000
+HOST ?= localhost:8002
 DEPLOY_ENV = production
 
 virtualenv: 
