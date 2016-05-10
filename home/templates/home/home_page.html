@@ -11,6 +11,11 @@
     color: rgba(255, 255, 255, 0.75);
     background-attachment: fixed, fixed;
     {% image page.parralax_image original as parralax_img %}
+    background-image: 
+        url("{% static 'home/css/images/overlay1.png' %}"), 
+        url("{% static 'home/css/images/overlay1.png' %}"),
+        url("{{ parralax_img.url }}");
+    background-size: cover;
 }
 
 #header:after {
@@ -19,6 +24,7 @@
     -ms-transition: opacity 1s ease;
     transition: opacity 1s ease;
     {% image page.header_background_image original as header_background %}
+    background-image: url("{{ header_background.url }}");
     content: '';
     height: 100%;
     left: 0;
