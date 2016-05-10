@@ -8,6 +8,7 @@ SECRET_KEY = get_env_variable("SECRET_KEY")
 # Compress static files offline
 # http://django-compressor.readthedocs.org/en/latest/settings/#django.conf.settings.COMPRESS_OFFLINE
 
+COMPRESS_ENABLED = True
 COMPRESS_OFFLINE = True
 
 COMPRESS_CSS_FILTERS = [
