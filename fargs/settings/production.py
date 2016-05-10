@@ -16,8 +16,7 @@ COMPRESS_CSS_FILTERS = [
     'compressor.filters.cssmin.CSSMinFilter',
 ]
 
-# ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [get_env_variable("HOST_NAME"), ]
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
