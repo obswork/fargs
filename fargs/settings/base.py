@@ -77,6 +77,7 @@ INSTALLED_APPS = (
     'wagtailfontawesome',
 
     'home',
+    'wagtailmodeladmin',
 
     # OPTIONAL APPS (site-breaking use of fixtures in pages - see: https://github.com/chrisdev/wagtail-cookiecutter-foundation/issues/257)
 
