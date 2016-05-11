@@ -103,6 +103,7 @@ MIDDLEWARE_CLASSES = (
 
     'wagtail.wagtailcore.middleware.SiteMiddleware',
     'wagtail.wagtailredirects.middleware.RedirectMiddleware',
+    'wagtailmodeladmin.middleware.ModelAdminMiddleware',
 )
 
 ROOT_URLCONF = 'fargs.urls'
