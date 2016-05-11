@@ -242,10 +242,9 @@ TWITTER_DESCRIPTION = ''
 
 LOGIN_URL = 'wagtailadmin_login'
 LOGIN_REDIRECT_URL = 'wagtailadmin_home'
-
 WAGTAIL_SITE_NAME = "fargs"
-
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'utils/tags/search/search_results.html'
+WAGTAIL_ENABLE_UPDATE_CHECK = True
 
 # Use Elasticsearch as the search backend for extra performance and better search results
 # WAGTAILSEARCH_BACKENDS = {
