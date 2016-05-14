@@ -1,6 +1,6 @@
 from django.db import models
-from django.contrib import messages
 from django.shortcuts import render
+from django.http import JsonResponse
 
 from modelcluster.fields import ParentalKey
 
@@ -173,26 +173,23 @@ class HomePage(Page):
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.save()
-                messages.success(request, "Thanks for your message, our staff will contact you shortly.")
                 form = MessageForm()
                 return render(request, 'home/home_page.html', {
                     'page': self,
                     'form': form,
+                    'success_message': "Great! We'll contact you soon."
                 })
 
                 return render(request, 'home/home_page.html', {
                     'page': self,
                     'form': form,
                 })
-
-            form = MessageForm()
-
-            messages.error(request, "Whoops, try again.")
-            return render(request, 'home/home_page.html', {
-                'page': self,
-                'form': form,
+            else:
+                return render(request, 'home/home_page.html', {
+                    'page': self,
+                    'form': form,
+                    'error_message': "Whoops, try again! Please include your name, email, and message."
                 })
-
         else:
             form = MessageForm()
 

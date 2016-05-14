@@ -16,6 +16,22 @@
         url("{% static 'home/css/images/overlay1.png' %}"),
         url("{{ parralax_img.url }}");
     background-size: cover;
+    .alert{
+        padding: 15px;
+        border: 1x solid transparent;
+        border-radius: 4px;
+        display: block;
+    }
+    .success{
+        color: #3c763d;
+        background-color: #dff0d8;
+        border-color: #d6e9c6;
+    }
+    .error{
+        color: #a94442;
+        background-color: #f2dede;
+        border-color: #ebccd1;
+    }
 }
 
 #header:after {
@@ -43,6 +59,16 @@
 <!-- Header -->
 <section id="header">
   <div class="inner">
+      {% if success_message %}
+        <div class="alert success">
+            {{ success_message }}        
+        </div>
+      {% endif %}
+      {% if error_message %}
+        <div class="alert error">
+            {{ error_message }}        
+        </div>
+      {% endif %}
       {% image page.logo_image original as logo_image %}
       <img src="{{ logo_image.url }}" alt=""/>
       {{ page.header_text|richtext }}
