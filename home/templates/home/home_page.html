@@ -239,10 +239,11 @@
 
 {% block extra_js %}
 <script type="text/javascript" charset="utf-8">
-$("#sendMessage").click(function(e)){
+$("#sendMessage").click(function(e){
     e.preventDefault()
-        var form = $("#contactForm").serialize()
-        console.log(form)
+    var form = $("#contactForm").serialize()
+    console.log(form)
+})
 </script>
 {% endblock %}
 
