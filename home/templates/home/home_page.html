@@ -197,15 +197,12 @@
             {% csrf_token %}
                 <div class="row uniform 50%">
                     <div class="6u 12u$(xsmall)">
-                        {{ form.sender.errors }}
                         {{ form.sender }} 
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        {{ form.email.errors }}
                         {{ form.email }}
                     </div>
                     <div class="6u$ 12u$(xsmall)">
-                        {{ form.number.errors }}
                         {{ form.number }}
                     </div>
                     {% for radio in form.category %}
