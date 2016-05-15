@@ -60,7 +60,7 @@
 <!-- Header -->
 <section id="header">
   <div class="inner">
-      {% if success_message %}
+     {% if success_message %}
         <div class="alert success">
             {{ success_message }}        
         </div>
@@ -217,7 +217,7 @@
                     <div class="12u$">
                         <ul class="actions">
                             <li><input type="submit" value="Send Message" class="special" id="sendMessage"/></li>
-                            <li><input type="reset" value="Reset" /></li>
+                            <li><input type="reset" id="clear" value="Reset" /></li>
                         </ul>
                     </div>
                 </div>
@@ -241,8 +241,29 @@
 <script type="text/javascript" charset="utf-8">
 $("#sendMessage").click(function(e){
     e.preventDefault()
-    var form = $("#contactForm").serialize()
-    console.log(form)
+    var contactMessage = $("#contactForm").serialize()
+    $.ajax({
+        type: "POST",
+        url: "/",
+        data: contactMessage,
+        success: function(data){
+            if(data.success){
+                $('#contactForm')[0].reset();
+            }else{
+                $("#contactForm").find(".error").remove()
+                for (var key in data) {
+                    if (key in {email: 1, message: 1, number: 1, sender: 1, }) {
+                        error = data[key][0];
+                        field = $("#contactForm").find("#id_" + key)
+                        field.after('<div class="alert error">' + error + '</div>');
+                    }
+                }
+            }
+        }
+    })
+})
+$("#clear").click(function(e){
+    $("#contactForm").find(".error").remove()
 })
 </script>
 {% endblock %}

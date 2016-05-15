@@ -173,23 +173,12 @@ class HomePage(Page):
             if form.is_valid():
                 instance = form.save(commit=False)
                 instance.save()
-                form = MessageForm()
-                return render(request, 'home/home_page.html', {
-                    'page': self,
-                    'form': form,
-                    'success_message': "Great! We'll contact you soon."
-                })
-
-                return render(request, 'home/home_page.html', {
-                    'page': self,
-                    'form': form,
-                })
+                data = {}
+                data['success'] = "Great! We'll contact you soon."
+                return JsonResponse(data)
             else:
-                return render(request, 'home/home_page.html', {
-                    'page': self,
-                    'form': form,
-                    'error_message': "Whoops, try again! Please include your name, email, and message."
-                })
+                errors = dict([(key, [error for error in value]) for key, value in form.errors.items()])
+                return JsonResponse(errors)
         else:
             form = MessageForm()
 
