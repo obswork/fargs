@@ -25,7 +25,7 @@
   tags:
       - web 
 
- - name: Prompt to upload deployment keys 
+ - name: Prompt to add deploy key to VCS
    pause: prompt="Ensure you've added the key for the deploy user (located in the authorized keys dir) to the git directory for the project.
                   Please press [Enter] after you've added keys" 
    tags:
