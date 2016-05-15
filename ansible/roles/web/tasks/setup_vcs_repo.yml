@@ -24,6 +24,12 @@
   become_user: root
   tags:
       - web 
+
+ - name: Prompt to upload deployment keys 
+   pause: prompt="Ensure you've added the key for the deploy user (located in the authorized keys dir) to the git directory for the project.
+                  Please press [Enter] after you've added keys" 
+   tags:
+     - user
       - hg
 
 - name: clone git repo 
