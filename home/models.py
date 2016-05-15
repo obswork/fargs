@@ -174,7 +174,7 @@ class HomePage(Page):
                 instance = form.save(commit=False)
                 instance.save()
                 data = {}
-                data['success'] = "Great! We'll contact you soon."
+                data['success'] = "Great! We'll be contacting you soon at <b>{}</b>.".format(instance)
                 return JsonResponse(data)
             else:
                 errors = dict([(key, [error for error in value]) for key, value in form.errors.items()])
