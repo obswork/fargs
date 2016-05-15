@@ -249,6 +249,7 @@ $("#sendMessage").click(function(e){
         success: function(data){
             if(data.success){
                 $('#contactForm')[0].reset();
+                $("#contactForm").find(".error").remove()
             }else{
                 $("#contactForm").find(".error").remove()
                 for (var key in data) {
