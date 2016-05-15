@@ -179,20 +179,6 @@
     <div class="container">
         <section>
             <h1><strong>Message</strong></h1>
-            {% if messages %}
-                {% for message in message %}
-                    {% if message.level_tag == 'success' %}
-                        <h4 class="{{ message.tags }}" style="color: #2199e8">
-                            {{ message }}
-                        </h4>
-                    {% else %}
-                        <h4 class="{{ message.tags }}" style="color: red">
-                            {{ message }}
-                        </h4>
-                        {% endif %} 
-                {% endfor %}
-            {% endif %}
-                
             <form method="post" action="/" id="contactForm">
             {% csrf_token %}
                 <div class="row uniform 50%">
@@ -250,6 +236,10 @@ $("#sendMessage").click(function(e){
             if(data.success){
                 $('#contactForm')[0].reset();
                 $("#contactForm").find(".error").remove()
+                $("#contactForm").before('<div class="alert success">' + data.success + '</div>');
+                setTimeout(function(){
+                    $(".success").fadeOut("slow");
+                }, 6000);
             }else{
                 $("#contactForm").find(".error").remove()
                 for (var key in data) {
