@@ -25,12 +25,12 @@
   tags:
       - web 
 
- - name: Prompt to add deploy key to VCS
-   pause: prompt="Ensure you've added the key for the deploy user (located in the authorized keys dir) to the git directory for the project.
-                  Please press [Enter] after you've added keys" 
-   tags:
-     - user
-      - hg
+- name: Prompt to add deploy key to VCS
+  pause: prompt="Ensure you've added the key for the deploy user (located in the authorized keys dir) to the git directory for the project.
+                 Please press [Enter] after you've added keys" 
+  tags:
+    - user
+     - hg
 
 - name: clone git repo 
   git: repo={{ project_repo }} dest={{ sites_dir }}/{{ project_name }}
