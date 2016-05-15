@@ -34,7 +34,7 @@
       - venv
 
 - name: create the project virtualenv
-  command: virtualenv {{ virtualenvs_dir }}/{{ project_name }}-env --no-site-packages
+  command: virtualenv {{ virtualenvs_dir }}/{{ project_name }}-env --no-site-packages --python=/usr/bin/python3
   become: yes
   become_user: "{{ deploy_user }}"
   args:
