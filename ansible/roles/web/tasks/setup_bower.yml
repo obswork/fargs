@@ -12,8 +12,8 @@
         state=latest
         force=yes
   with_items:
-    - nodejs 
     - npm
+    - nodejs 
     - nodejs-legacy
   tags:
     - bower
@@ -30,8 +30,7 @@
   #      - bower
 
 - name: install frontend dependencies 
-  become: yes
-  become_user: vagrant
+  become: no
   shell: bower install
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
