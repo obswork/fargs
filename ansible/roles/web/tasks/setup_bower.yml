@@ -5,32 +5,33 @@
   tags:
     - bower
 
-  # - name: install bower and dependencies
-  #   become: yes
-  #   apt: >
-  #         pkg={{ item }}  
-  #         state=latest
-  #         force=yes
-  #   with_items:
-  #     - nodejs 
-  #     - npm
-  #     - nodejs-legacy
-  #   tags:
-  #     - bower
-  #     - node
-
 - name: install bower and dependencies
   become: yes
-  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install -y nodejs
-
-- name: install bower 
-  become: yes
-  shell: npm install -g bower
+  apt: >
+        pkg={{ item }}  
+        state=latest
+        force=yes
+  with_items:
+    - nodejs 
+    - npm
+    - nodejs-legacy
   tags:
-     - bower
+    - bower
+    - node
+
+  # - name: install bower and dependencies
+  #   become: yes
+  #   shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install -y nodejs
+
+  # - name: install bower 
+  #   become: yes
+  #   shell: npm install -g bower
+  #   tags:
+  #      - bower
 
 - name: install frontend dependencies 
-  become: no
+  become: yes
+  become_user: vagrant
   shell: bower install
   args:
      chdir: "{{ sites_dir }}/{{ project_name }}"
