@@ -1,3 +1,4 @@
 {
-  "directory": "static"
+  "directory": "static",
+  "cwd": "/usr/local/sites/fargs"
 }
