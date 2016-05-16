@@ -14,6 +14,7 @@
     - build-essential
     - python 
     - python-dev
+    - python3-dev
     - python-setuptools
     - libjpeg-dev
     - libtiff-dev 
