@@ -19,7 +19,7 @@
     - node
 
 - name: install bower 
-  become: no
+  become: yes
   shell: npm install -g bower
   tags:
      - bower
