@@ -22,7 +22,7 @@
 '''
 - name: install bower and dependencies
   become: yes
-  curl: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install -y nodejs
+  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install -y nodejs
 
 - name: install bower 
   become: yes
