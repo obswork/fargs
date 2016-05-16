@@ -5,21 +5,20 @@
   tags:
     - bower
 
-'''
-- name: install bower and dependencies
-  become: yes
-  apt: >
-        pkg={{ item }}  
-        state=latest
-        force=yes
-  with_items:
-    - nodejs 
-    - npm
-    - nodejs-legacy
-  tags:
-    - bower
-    - node
-'''
+  # - name: install bower and dependencies
+  #   become: yes
+  #   apt: >
+  #         pkg={{ item }}  
+  #         state=latest
+  #         force=yes
+  #   with_items:
+  #     - nodejs 
+  #     - npm
+  #     - nodejs-legacy
+  #   tags:
+  #     - bower
+  #     - node
+
 - name: install bower and dependencies
   become: yes
   shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash - && sudo apt-get install -y nodejs
