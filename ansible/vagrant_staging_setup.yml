@@ -12,6 +12,8 @@
       authorized_key: user=vagrant
                       key="{{ lookup('file', '/users/home/.ssh/id_rsa.pub') }}"
                       state=present
+      tags:
+          - vagrant
 
     - name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
       command: host -t A ansible.cc
