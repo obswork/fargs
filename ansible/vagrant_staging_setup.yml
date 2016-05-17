@@ -3,9 +3,6 @@
   remote_user: vagrant
 
   tasks:
-    - name: and now we test the connection
-      ping:
-
     - pause: prompt="Ensure that you've added your public keys to the keystore_folder
                     [Enter] to continue once you've added public keys"
       tags:
