@@ -134,11 +134,19 @@ else
 endif
 
 provision:
+ifeq ($(DEPLOY_ENV), vagrant)
+	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
+	(\
+		cd ansible; \
+		$(PLAYBOOK) -vvvv -i $(DEPLOY_ENV) provision_staging.yml --skip-tags "user"; \
+	)
+else
 	$(call ECHO_BLUE, Provision the $(DEPLOY_ENV) server )
 	(\
 		cd ansible; \
 		$(PLAYBOOK) -vvvv -i $(DEPLOY_ENV) provision.yml --skip-tags "user"; \
 	)
+endif
 
 deploy:
 	$(call ECHO_BLUE, deploy changes to the $(DEPLOY_ENV) server )
