@@ -16,6 +16,7 @@ $("#sendMessage").click(function(e){
             }else{
                 $("#contactForm").find(".error").remove();
                 for (var key in data) {
+                    // alt. implementation so keys don't need to be specified - if (value NOT == '' for key in data: {key:value}) ..or something like that
                     if (key in {email: 1, message: 1, number: 1, sender: 1, }) {
                         error = data[key][0];
                         field = $("#contactForm").find("#id_" + key);
